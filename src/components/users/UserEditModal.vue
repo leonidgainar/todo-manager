@@ -4,12 +4,7 @@
     <template v-slot:modal-body>
       <VeeForm @submit="saveUser">
         <div class="mb-4">
-          <label
-            class="block text-gray-700 text-md font-bold mb-2 text-left"
-            for="editedName"
-          >
-            Name
-          </label>
+          <label class="form-label" for="editedName"> Name </label>
           <VeeField
             id="editedName"
             name="name"
@@ -17,17 +12,12 @@
             v-model.trim="name"
             placeholder="Enter the name"
             rules="required|min:3"
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            class="input-text"
           />
           <ErrorMessage name="name" class="text-red-600 text-sm" />
         </div>
         <div class="mb-4">
-          <label
-            class="block text-gray-700 text-md font-bold mb-2 text-left mt-4"
-            for="tasks"
-          >
-            Tasks
-          </label>
+          <label class="form-label mt-4" for="tasks"> Tasks </label>
           <ul v-if="tasks.length" id="tasks">
             <li v-for="task in tasks" :key="task">
               <div
@@ -60,15 +50,10 @@
           <div v-else>This user doesn't have some tasks assigned to them.</div>
         </div>
         <div class="bg-white py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-          <button
-            type="submit"
-            class="ml-2 rounded-md px-4 py-2 bg-red-600 text-base font-medium text-white hover:bg-red-700"
-          >
-            Save
-          </button>
+          <button type="submit" class="btn-primary ml-2">Save</button>
           <button
             type="reset"
-            class="rounded-md border border-gray-300 px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50"
+            class="btn-secondary"
             @click="$emit('close-user-modal')"
           >
             Cancel

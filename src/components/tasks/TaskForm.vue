@@ -1,17 +1,9 @@
 <template>
   <div class="w-full max-w-xl py-8 px-4">
     <h1 class="text-2xl font-bold">Add new task</h1>
-    <VeeForm
-      @submit="addNewTask"
-      class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
-    >
+    <VeeForm @submit="addNewTask" class="form">
       <div class="mb-4">
-        <label
-          for="title"
-          class="block text-gray-700 text-md font-bold mb-2 text-left"
-        >
-          Title
-        </label>
+        <label for="title" class="form-label"> Title </label>
         <VeeField
           id="title"
           name="title"
@@ -19,15 +11,12 @@
           v-model.trim="title"
           placeholder="Enter the title"
           rules="required|min:3"
-          class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          class="input-text"
         />
         <ErrorMessage name="title" class="text-red-600 text-sm" />
       </div>
       <div class="mb-4">
-        <label
-          for="complete"
-          class="block text-gray-700 text-md font-bold mb-2 text-left"
-        >
+        <label for="complete" class="form-label">
           <VeeField
             id="complete"
             name="complete"
@@ -40,18 +29,13 @@
         </label>
       </div>
       <div class="mb-4">
-        <label
-          for="assignedTo"
-          class="block text-gray-700 text-md font-bold mb-2 text-left"
-        >
-          Assigned to
-        </label>
+        <label for="assignedTo" class="form-label"> Assigned to </label>
         <VeeField
           as="select"
           id="assignedTo"
           name="assignedTo"
           v-model="assignedTo"
-          class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
+          class="select"
         >
           <option value="" disabled>-- None --</option>
           <option v-for="user in users" :key="user.id" :value="user.id">
@@ -59,12 +43,7 @@
           </option>
         </VeeField>
       </div>
-      <button
-        type="submit"
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-      >
-        Add task
-      </button>
+      <button type="submit" class="btn-primary">Add task</button>
     </VeeForm>
   </div>
 </template>

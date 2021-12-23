@@ -1,55 +1,44 @@
 <template>
   <div v-if="tasks.length" class="min-w-full sm:px-6 lg:px-4">
     <h1 class="text-2xl font-bold">Tasks</h1>
-    <div class="shadow border-b border-gray-200 sm:rounded mt-4">
-      <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50">
-          <tr>
-            <th
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
-              v-for="header in tableHeaders"
-              :key="header"
-            >
-              {{ header }}
-            </th>
+    <table class="min-w-full table-container">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="table-header" v-for="header in tableHeaders" :key="header">
+            {{ header }}
+          </th>
 
-            <th class="px-6 py-3">
-              <span class="sr-only">Edit</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
-          <tr v-for="task in tasks" :key="task.id">
-            <td class="px-6 py-4 text-left">
-              {{ task.title }}
-            </td>
-            <td class="px-6 py-4 text-left">
-              <span v-if="task.assignedTo">
-                {{ getUserById(task.assignedTo).name }}
-              </span>
-              <span v-else> N/A </span>
-            </td>
-            <td class="py-4 text-left">
-              <TaskStatusLabel :status="task.complete" />
-            </td>
-            <td class="px-6 py-4 text-right text-xs">
-              <button
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                @click="editTask(task)"
-              >
-                Edit
-              </button>
-              <button
-                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 ml-2 mt-2 md:mt-0 rounded"
-                @click="deleteAndUnassignTask(task)"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+          <th class="px-6 py-3">
+            <span class="sr-only">Edit</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <tr v-for="task in tasks" :key="task.id">
+          <td class="px-6 py-4 text-left">
+            {{ task.title }}
+          </td>
+          <td class="px-6 py-4 text-left">
+            <span v-if="task.assignedTo">
+              {{ getUserById(task.assignedTo).name }}
+            </span>
+            <span v-else> N/A </span>
+          </td>
+          <td class="py-4 text-left">
+            <TaskStatusLabel :status="task.complete" />
+          </td>
+          <td class="px-6 py-4 text-right text-xs">
+            <button class="btn-primary" @click="editTask(task)">Edit</button>
+            <button
+              class="btn-danger ml-2 mt-2 md:mt-0"
+              @click="deleteAndUnassignTask(task)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <TaskEditModal
     @close-task-modal="closeEditModal()"

@@ -1,55 +1,44 @@
 <template>
   <div v-if="users.length" class="min-w-full sm:px-6 lg:px-6">
     <h1 class="text-2xl font-bold">Users</h1>
-    <div class="shadow border-b border-gray-200 sm:rounded mt-4">
-      <table class="min-w-full divide-y divide-gray-200">
-        <thead class="bg-gray-50">
-          <tr>
-            <th
-              class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase"
-              v-for="header in tableHeaders"
-              :key="header"
+    <table class="min-w-full table-container">
+      <thead class="bg-gray-50">
+        <tr>
+          <th class="table-header" v-for="header in tableHeaders" :key="header">
+            {{ header }}
+          </th>
+          <th class="px-6 py-3">
+            <span class="sr-only">Edit</span>
+          </th>
+        </tr>
+      </thead>
+      <tbody class="table-body">
+        <tr v-for="user in users" :key="user.id">
+          <td class="px-6 py-4 text-left align-top">
+            {{ user.name }}
+          </td>
+          <td class="px-6 py-4 text-left align-top">
+            <div
+              v-for="task in user.tasks"
+              :key="task"
+              class="flex justify-between text-gray-900 mb-2"
             >
-              {{ header }}
-            </th>
-            <th class="px-6 py-3">
-              <span class="sr-only">Edit</span>
-            </th>
-          </tr>
-        </thead>
-        <tbody class="bg-white divide-y divide-gray-200">
-          <tr v-for="user in users" :key="user.id">
-            <td class="px-6 py-4 text-left align-top">
-              {{ user.name }}
-            </td>
-            <td class="px-6 py-4 text-left align-top">
-              <div
-                v-for="task in user.tasks"
-                :key="task"
-                class="flex justify-between text-gray-900 mb-2"
-              >
-                {{ getTaskById(task)?.title }}
-                <TaskStatusLabel :status="getTaskById(task)?.complete" />
-              </div>
-            </td>
-            <td class="px-6 py-4 align-top text-right text-xs">
-              <button
-                class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-                @click="editUser(user)"
-              >
-                Edit
-              </button>
-              <button
-                class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 ml-2 mt-2 md:mt-0 rounded"
-                @click="deleteUserAndUnassignTask(user)"
-              >
-                Delete
-              </button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+              {{ getTaskById(task)?.title }}
+              <TaskStatusLabel :status="getTaskById(task)?.complete" />
+            </div>
+          </td>
+          <td class="px-6 py-4 align-top text-right text-xs">
+            <button class="btn-primary" @click="editUser(user)">Edit</button>
+            <button
+              class="btn-danger ml-2 mt-2 md:mt-0"
+              @click="deleteUserAndUnassignTask(user)"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
   <UserEditModal
     @close-user-modal="closeEditModal()"
