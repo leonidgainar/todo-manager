@@ -25,13 +25,15 @@
       </div>
       <div class="mb-4">
         <label
-          for="completed"
+          for="complete"
           class="block text-gray-700 text-md font-bold mb-2 text-left"
         >
-          <input
-            id="completed"
+          <VeeField
+            id="complete"
+            name="complete"
             type="checkbox"
-            v-model="completed"
+            :value="true"
+            v-model="complete"
             class="mr-2"
           />
           <span class="text-sm"> Task completed </span>
@@ -44,8 +46,10 @@
         >
           Assigned to
         </label>
-        <select
+        <VeeField
+          as="select"
           id="assignedTo"
+          name="assignedTo"
           v-model="assignedTo"
           class="block appearance-none w-full bg-gray-200 border border-gray-200 text-gray-700 py-3 px-4 pr-8 rounded leading-tight focus:outline-none focus:bg-white focus:border-gray-500"
         >
@@ -53,7 +57,7 @@
           <option v-for="user in users" :key="user.id" :value="user.id">
             {{ user.name }}
           </option>
-        </select>
+        </VeeField>
       </div>
       <button
         type="submit"
@@ -78,7 +82,7 @@ export default {
   data() {
     return {
       title: "",
-      completed: false,
+      complete: false,
       assignedTo: ""
     };
   },
@@ -96,7 +100,7 @@ export default {
       this.addTask({
         id: taskId,
         title: this.title,
-        complete: this.completed,
+        complete: this.complete,
         assignedTo: this.assignedTo
       });
       this.addTaskToUser({ userId: this.assignedTo, taskId });

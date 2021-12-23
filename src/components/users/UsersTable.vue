@@ -26,7 +26,7 @@
               <div
                 v-for="task in user.tasks"
                 :key="task"
-                class="text-gray-900 mb-2"
+                class="flex justify-between text-gray-900 mb-2"
               >
                 {{ getTaskById(task)?.title }}
                 <TaskStatusLabel :status="getTaskById(task)?.complete" />
@@ -73,7 +73,7 @@ import TaskStatusLabel from "../tasks/TaskStatusLabel.vue";
 import UserEditModal from "../users/UserEditModal.vue";
 
 export default {
-  name: "UserList",
+  name: "UsersTable",
   components: {
     TaskStatusLabel,
     UserEditModal

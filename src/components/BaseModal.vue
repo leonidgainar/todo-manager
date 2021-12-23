@@ -35,9 +35,6 @@
               <slot name="modal-body"></slot>
             </div>
           </div>
-          <div class="bg-white px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-            <slot name="modal-actions"></slot>
-          </div>
         </div>
       </div>
     </div>

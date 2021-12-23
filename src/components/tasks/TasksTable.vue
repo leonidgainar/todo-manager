@@ -74,7 +74,7 @@ import TaskStatusLabel from "../tasks/TaskStatusLabel.vue";
 import TaskEditModal from "../tasks/TaskEditModal.vue";
 
 export default {
-  name: "TaskList",
+  name: "TasksTable",
   components: {
     TaskStatusLabel,
     TaskEditModal
