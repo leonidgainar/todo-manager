@@ -11,7 +11,11 @@
             type="text"
             v-model.trim="title"
             placeholder="Enter the title"
-            rules="required|min:3"
+            :rules="{
+              required: true,
+              min: 3,
+              unique: titleWasChanged ? [getTasksTitle] : false
+            }"
             class="input-text"
           />
           <ErrorMessage name="title" class="text-red-600 text-sm" />
@@ -65,7 +69,8 @@
 import { createNamespacedHelpers } from "vuex";
 const { mapState: mapStateUsers, mapActions: mapActionsUsers } =
   createNamespacedHelpers("users");
-const { mapActions: mapActionsTasks } = createNamespacedHelpers("tasks");
+const { mapGetters: mapGettersTasks, mapActions: mapActionsTasks } =
+  createNamespacedHelpers("tasks");
 
 import BaseModal from "../BaseModal.vue";
 
@@ -118,7 +123,12 @@ export default {
   },
 
   computed: {
-    ...mapStateUsers(["users"])
+    ...mapStateUsers(["users"]),
+    ...mapGettersTasks(["getTasksTitle"]),
+
+    titleWasChanged() {
+      return this.title !== this.taskTitle;
+    }
   },
 
   methods: {

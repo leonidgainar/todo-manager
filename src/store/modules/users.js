@@ -7,6 +7,9 @@ const state = () => ({
 const getters = {
   getUserById: (state) => (id) => {
     return state.users.find((user) => user.id === id);
+  },
+  getUsersName: (state) => {
+    return state.users.map(({ name }) => name);
   }
 };
 

@@ -10,7 +10,7 @@
           name="name"
           v-model.trim="name"
           placeholder="Enter the name"
-          rules="required|min:3"
+          :rules="{ required: true, min: 3, unique: [getUsersName] }"
           class="input-text"
         />
         <ErrorMessage name="name" class="text-red-600 text-sm" />
@@ -22,7 +22,7 @@
 
 <script>
 import { createNamespacedHelpers } from "vuex";
-const { mapActions } = createNamespacedHelpers("users");
+const { mapGetters, mapActions } = createNamespacedHelpers("users");
 
 export default {
   name: "UserForm",
@@ -31,6 +31,10 @@ export default {
     return {
       name: ""
     };
+  },
+
+  computed: {
+    ...mapGetters(["getUsersName"])
   },
 
   methods: {

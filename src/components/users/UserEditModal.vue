@@ -11,7 +11,11 @@
             type="text"
             v-model.trim="name"
             placeholder="Enter the name"
-            rules="required|min:3"
+            :rules="{
+              required: true,
+              min: 3,
+              unique: nameWasChanged ? [getUsersName] : false
+            }"
             class="input-text"
           />
           <ErrorMessage name="name" class="text-red-600 text-sm" />
@@ -66,7 +70,8 @@
 
 <script>
 import { createNamespacedHelpers } from "vuex";
-const { mapActions: mapActionsUsers } = createNamespacedHelpers("users");
+const { mapGetters: mapGettersUsers, mapActions: mapActionsUsers } =
+  createNamespacedHelpers("users");
 const { mapGetters: mapGettersTasks, mapActions: mapActionsTasks } =
   createNamespacedHelpers("tasks");
 
@@ -116,7 +121,12 @@ export default {
   },
 
   computed: {
-    ...mapGettersTasks(["getTaskById"])
+    ...mapGettersTasks(["getTaskById"]),
+    ...mapGettersUsers(["getUsersName"]),
+
+    nameWasChanged() {
+      return this.name !== this.userName;
+    }
   },
 
   methods: {

@@ -13,7 +13,8 @@ export default {
       generateMessage: (context) => {
         const messages = {
           required: `The field "${context.field}" is required.`,
-          min: `The field "${context.field}" is too short.`
+          min: `The field "${context.field}" is too short.`,
+          unique: `The field "${context.field}" must be unique.`
         };
         const message = messages[context.rule.name]
           ? messages[context.rule.name]
@@ -31,6 +32,18 @@ export default {
     app.component("ErrorMessage", ErrorMessage);
 
     defineRule("required", required);
+
     defineRule("min", min);
+
+    defineRule("unique", (value, [existingValues]) => {
+      if (!value || !value.length) {
+        return true;
+      }
+
+      if (existingValues.includes(value.trim())) {
+        return false;
+      }
+      return true;
+    });
   }
 };

@@ -5,6 +5,9 @@ const state = () => ({
 const getters = {
   getTaskById: (state) => (id) => {
     return state.tasks.find((task) => task.id === id);
+  },
+  getTasksTitle: (state) => {
+    return state.tasks.map(({ title }) => title);
   }
 };
 
