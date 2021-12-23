@@ -136,7 +136,7 @@ export default {
       this.tasksToDelete = [];
     },
 
-    saveUser() {
+    saveUser(_, { resetForm }) {
       const updatedUser = {
         id: this.userId,
         name: this.name,
@@ -148,6 +148,7 @@ export default {
         this.deleteAssignedTasks();
       }
 
+      resetForm();
       this.$emit("close-user-modal");
     }
   }

@@ -36,7 +36,7 @@ export default {
   methods: {
     ...mapActions(["addUser"]),
 
-    addNewUser(values, { resetForm }) {
+    addNewUser(_, { resetForm }) {
       this.addUser({ name: this.name, tasks: [] });
       resetForm();
     }

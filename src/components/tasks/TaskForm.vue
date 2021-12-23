@@ -74,7 +74,7 @@ export default {
     ...mapActionsTasks(["addTask"]),
     ...mapActionsUsers(["addTaskToUser"]),
 
-    addNewTask(values, { resetForm }) {
+    addNewTask(_, { resetForm }) {
       const taskId = nanoid();
       this.addTask({
         id: taskId,

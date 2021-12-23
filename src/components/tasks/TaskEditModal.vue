@@ -133,7 +133,7 @@ export default {
       this.addTaskToUser({ userId: this.assignedTo, taskId: this.taskId });
     },
 
-    saveTask(values, { resetForm }) {
+    saveTask(_, { resetForm }) {
       const updatedTask = {
         id: this.taskId,
         title: this.title,
