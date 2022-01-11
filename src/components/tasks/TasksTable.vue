@@ -17,7 +17,7 @@
         <tr v-for="task in tasks" :key="task.id">
           <td class="px-6 py-4 text-left">
             <span :title="task.title">
-              {{ truncatedText(task.title) }}
+              {{ truncateText(task.title) }}
             </span>
           </td>
           <td class="px-6 py-4 text-left">
@@ -25,7 +25,7 @@
               v-if="task.assignedTo"
               :title="getUserById(task.assignedTo)?.name"
             >
-              {{ truncatedText(getUserById(task.assignedTo)?.name) }}
+              {{ truncateText(getUserById(task.assignedTo)?.name) }}
             </span>
             <span v-else> N/A </span>
           </td>
@@ -115,7 +115,7 @@ export default {
       this.showEditModal = false;
     },
 
-    truncatedText(text, length = 20, suffix = "...") {
+    truncateText(text, length = 20, suffix = "...") {
       if (text.length > length) {
         return text.substring(0, length) + suffix;
       } else {
