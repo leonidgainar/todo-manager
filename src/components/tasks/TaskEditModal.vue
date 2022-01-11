@@ -14,6 +14,7 @@
             :rules="{
               required: true,
               min: 3,
+              max: 64,
               unique: titleWasChanged ? [getTasksTitle] : false
             }"
             class="input-text"

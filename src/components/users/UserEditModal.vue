@@ -14,6 +14,7 @@
             :rules="{
               required: true,
               min: 3,
+              max: 64,
               unique: nameWasChanged ? [getUsersName] : false
             }"
             class="input-text"

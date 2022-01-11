@@ -16,11 +16,16 @@
       <tbody class="table-body">
         <tr v-for="task in tasks" :key="task.id">
           <td class="px-6 py-4 text-left">
-            {{ task.title }}
+            <span :title="task.title">
+              {{ truncatedText(task.title) }}
+            </span>
           </td>
           <td class="px-6 py-4 text-left">
-            <span v-if="task.assignedTo">
-              {{ getUserById(task.assignedTo).name }}
+            <span
+              v-if="task.assignedTo"
+              :title="getUserById(task.assignedTo)?.name"
+            >
+              {{ truncatedText(getUserById(task.assignedTo)?.name) }}
             </span>
             <span v-else> N/A </span>
           </td>
@@ -30,7 +35,7 @@
           <td class="px-6 py-4 text-right text-xs">
             <button class="btn-primary" @click="editTask(task)">Edit</button>
             <button
-              class="btn-danger ml-2 mt-2 md:mt-0"
+              class="btn-danger ml-2 mt-2"
               @click="deleteAndUnassignTask(task)"
             >
               Delete
@@ -106,6 +111,14 @@ export default {
     closeEditModal() {
       this.currentTask = {};
       this.showEditModal = false;
+    },
+
+    truncatedText(text, length = 20, suffix = "...") {
+      if (text.length > length) {
+        return text.substring(0, length) + suffix;
+      } else {
+        return text;
+      }
     }
   }
 };

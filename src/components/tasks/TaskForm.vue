@@ -10,7 +10,7 @@
           type="text"
           v-model.trim="title"
           placeholder="Enter the title"
-          :rules="{ required: true, min: 3, unique: [getTasksTitle] }"
+          :rules="{ required: true, min: 3, max: 64, unique: [getTasksTitle] }"
           class="input-text"
         />
         <ErrorMessage name="title" class="text-red-600 text-sm" />

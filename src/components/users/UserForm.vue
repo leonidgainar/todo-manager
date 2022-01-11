@@ -10,7 +10,7 @@
           name="name"
           v-model.trim="name"
           placeholder="Enter the name"
-          :rules="{ required: true, min: 3, unique: [getUsersName] }"
+          :rules="{ required: true, min: 3, max: 64, unique: [getUsersName] }"
           class="input-text"
         />
         <ErrorMessage name="name" class="text-red-600 text-sm" />

@@ -5,7 +5,7 @@ import {
   ErrorMessage,
   configure
 } from "vee-validate";
-import { required, min } from "@vee-validate/rules";
+import { required, min, max } from "@vee-validate/rules";
 
 export default {
   install(app) {
@@ -14,6 +14,7 @@ export default {
         const messages = {
           required: `The field "${context.field}" is required.`,
           min: `The field "${context.field}" is too short.`,
+          max: `The field "${context.field}" is too long.`,
           unique: `The field "${context.field}" must be unique.`
         };
         const message = messages[context.rule.name]
@@ -34,6 +35,8 @@ export default {
     defineRule("required", required);
 
     defineRule("min", min);
+
+    defineRule("max", max);
 
     defineRule("unique", (value, [existingValues]) => {
       if (!value || !value.length) {
