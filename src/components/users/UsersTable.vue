@@ -32,9 +32,11 @@
             </div>
           </td>
           <td class="px-6 py-4 align-top text-right text-xs">
-            <button class="btn-primary" @click="editUser(user)">Edit</button>
+            <button class="btn-primary mb-2" @click="editUser(user)">
+              Edit
+            </button>
             <button
-              class="btn-danger ml-2 mt-2"
+              class="btn-danger ml-2"
               @click="deleteUserAndUnassignTask(user)"
             >
               Delete

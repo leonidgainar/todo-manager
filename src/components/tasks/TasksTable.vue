@@ -33,9 +33,11 @@
             <TaskStatusLabel :status="task.complete" />
           </td>
           <td class="px-6 py-4 text-right text-xs">
-            <button class="btn-primary" @click="editTask(task)">Edit</button>
+            <button class="btn-primary mb-2" @click="editTask(task)">
+              Edit
+            </button>
             <button
-              class="btn-danger ml-2 mt-2"
+              class="btn-danger ml-2"
               @click="deleteAndUnassignTask(task)"
             >
               Delete
