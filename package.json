@@ -1,5 +1,5 @@
 {
-  "name": "todo-manager",
+  "name": "todo-manager-vuex",
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
